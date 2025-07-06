@@ -2,6 +2,9 @@
 -- Created: 2025-01-01
 -- Description: Rollback the initial schema migration
 
+-- Disable foreign key constraints for safe cleanup
+PRAGMA foreign_keys = OFF;
+
 -- Drop indexes first
 DROP INDEX IF EXISTS idx_tags_name;
 DROP INDEX IF EXISTS idx_note_versions_created_at;
@@ -21,3 +24,6 @@ DROP TABLE IF EXISTS note_tags;
 DROP TABLE IF EXISTS tags;
 DROP TABLE IF EXISTS notes;
 DROP TABLE IF EXISTS users;
+
+-- Re-enable foreign key constraints
+PRAGMA foreign_keys = ON;

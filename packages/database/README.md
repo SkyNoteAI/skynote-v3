@@ -66,7 +66,7 @@ pnpm migrate:list
 
 ## File Structure
 
-```
+```text
 packages/database/
 ├── migrations/
 │   ├── 0001_initial_schema.sql       # Initial schema

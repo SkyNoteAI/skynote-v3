@@ -51,7 +51,7 @@ CREATE TABLE search_history (
     id TEXT PRIMARY KEY,
     user_id TEXT NOT NULL,
     query TEXT NOT NULL,
-    search_type TEXT, -- 'keyword' or 'semantic'
+    search_type TEXT CHECK (search_type IN ('keyword', 'semantic')), -- 'keyword' or 'semantic'
     results_count INTEGER,
     created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id)

@@ -21,14 +21,14 @@ INSERT INTO tags (id, name, color) VALUES
 
 -- Insert sample notes
 INSERT INTO notes (id, user_id, title, slug, folder_path, r2_key_prefix, word_count, block_count, has_images, markdown_generated_at) VALUES
-    ('note_1', 'user_1', 'Getting Started with SkyNote', 'getting-started-with-skynote', '/welcome', 'users/user_1/notes/note_1', 150, 8, false, datetime('now')),
-    ('note_2', 'user_1', 'Project Planning Template', 'project-planning-template', '/templates', 'users/user_1/notes/note_2', 300, 12, false, datetime('now')),
-    ('note_3', 'user_1', 'Meeting Notes - Q1 Planning', 'meeting-notes-q1-planning', '/meetings/2024', 'users/user_1/notes/note_3', 450, 18, false, datetime('now')),
-    ('note_4', 'user_1', 'Research: AI-Powered Knowledge Management', 'research-ai-knowledge-management', '/research', 'users/user_1/notes/note_4', 800, 25, true, datetime('now')),
-    ('note_5', 'user_1', 'Personal Goals 2024', 'personal-goals-2024', '/personal', 'users/user_1/notes/note_5', 200, 10, false, datetime('now')),
-    ('note_6', 'user_2', 'Demo Note for Testing', 'demo-note-testing', '/demo', 'users/user_2/notes/note_6', 100, 5, false, datetime('now')),
-    ('note_7', 'user_2', 'How to Use Semantic Search', 'how-to-use-semantic-search', '/tutorials', 'users/user_2/notes/note_7', 250, 12, false, datetime('now')),
-    ('note_8', 'user_1', 'Archived Note Example', 'archived-note-example', '/archive', 'users/user_1/notes/note_8', 120, 6, false, datetime('now', '-30 days'));
+    ('note_1', 'user_1', 'Getting Started with SkyNote', 'getting-started-with-skynote', '/welcome', 'users/user_1/notes/note_1', 150, 8, false, '2025-01-01T00:00:00Z'),
+    ('note_2', 'user_1', 'Project Planning Template', 'project-planning-template', '/templates', 'users/user_1/notes/note_2', 300, 12, false, '2025-01-01T01:00:00Z'),
+    ('note_3', 'user_1', 'Meeting Notes - Q1 Planning', 'meeting-notes-q1-planning', '/meetings/2024', 'users/user_1/notes/note_3', 450, 18, false, '2025-01-01T02:00:00Z'),
+    ('note_4', 'user_1', 'Research: AI-Powered Knowledge Management', 'research-ai-knowledge-management', '/research', 'users/user_1/notes/note_4', 800, 25, true, '2025-01-01T03:00:00Z'),
+    ('note_5', 'user_1', 'Personal Goals 2024', 'personal-goals-2024', '/personal', 'users/user_1/notes/note_5', 200, 10, false, '2025-01-01T04:00:00Z'),
+    ('note_6', 'user_2', 'Demo Note for Testing', 'demo-note-testing', '/demo', 'users/user_2/notes/note_6', 100, 5, false, '2025-01-01T05:00:00Z'),
+    ('note_7', 'user_2', 'How to Use Semantic Search', 'how-to-use-semantic-search', '/tutorials', 'users/user_2/notes/note_7', 250, 12, false, '2025-01-01T06:00:00Z'),
+    ('note_8', 'user_1', 'Archived Note Example', 'archived-note-example', '/archive', 'users/user_1/notes/note_8', 120, 6, false, '2024-12-01T00:00:00Z');
 
 -- Insert note-tag relationships
 INSERT INTO note_tags (note_id, tag_id) VALUES
@@ -57,11 +57,11 @@ INSERT INTO search_history (id, user_id, query, search_type, results_count) VALU
 
 -- Insert sample note versions
 INSERT INTO note_versions (id, note_id, version_number, r2_key, created_by) VALUES
-    ('version_1', 'note_1', 1, 'users/user_1/notes/note_1/versions/2024-01-01T00:00:00Z.json', 'user_1'),
-    ('version_2', 'note_2', 1, 'users/user_1/notes/note_2/versions/2024-01-01T00:00:00Z.json', 'user_1'),
-    ('version_3', 'note_2', 2, 'users/user_1/notes/note_2/versions/2024-01-02T00:00:00Z.json', 'user_1'),
-    ('version_4', 'note_3', 1, 'users/user_1/notes/note_3/versions/2024-01-01T00:00:00Z.json', 'user_1'),
-    ('version_5', 'note_4', 1, 'users/user_1/notes/note_4/versions/2024-01-01T00:00:00Z.json', 'user_1'),
-    ('version_6', 'note_5', 1, 'users/user_1/notes/note_5/versions/2024-01-01T00:00:00Z.json', 'user_1'),
-    ('version_7', 'note_6', 1, 'users/user_2/notes/note_6/versions/2024-01-01T00:00:00Z.json', 'user_2'),
-    ('version_8', 'note_7', 1, 'users/user_2/notes/note_7/versions/2024-01-01T00:00:00Z.json', 'user_2');
+    ('version_1', 'note_1', 1, 'users/user_1/notes/note_1/versions/2025-01-01T00:00:00Z.json', 'user_1'),
+    ('version_2', 'note_2', 1, 'users/user_1/notes/note_2/versions/2025-01-01T01:00:00Z.json', 'user_1'),
+    ('version_3', 'note_2', 2, 'users/user_1/notes/note_2/versions/2025-01-01T02:30:00Z.json', 'user_1'),
+    ('version_4', 'note_3', 1, 'users/user_1/notes/note_3/versions/2025-01-01T02:00:00Z.json', 'user_1'),
+    ('version_5', 'note_4', 1, 'users/user_1/notes/note_4/versions/2025-01-01T03:00:00Z.json', 'user_1'),
+    ('version_6', 'note_5', 1, 'users/user_1/notes/note_5/versions/2025-01-01T04:00:00Z.json', 'user_1'),
+    ('version_7', 'note_6', 1, 'users/user_2/notes/note_6/versions/2025-01-01T05:00:00Z.json', 'user_2'),
+    ('version_8', 'note_7', 1, 'users/user_2/notes/note_7/versions/2025-01-01T06:00:00Z.json', 'user_2');
