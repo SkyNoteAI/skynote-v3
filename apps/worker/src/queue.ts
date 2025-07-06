@@ -1,4 +1,10 @@
-import { Env, NoteMessage, BlockNoteContent } from './types/env';
+import {
+  Env,
+  NoteMessage,
+  BlockNoteContent,
+  Message,
+  MessageBatch,
+} from './types/env';
 
 /**
  * Queue consumer handler for processing note-related messages
@@ -147,13 +153,13 @@ async function processSearchIndexing(
       throw new Error(`Markdown not found for note ${noteId}`);
     }
 
-    const markdown = await markdownObject.text();
+    const _markdown = await markdownObject.text();
 
     // Index with AutoRAG (placeholder - will be implemented in TASK-018)
     // await env.AUTORAG.index({
     //   documentId: noteId,
     //   userId,
-    //   content: markdown
+    //   content: _markdown
     // });
 
     console.log(`Search indexing completed for note ${noteId}`);
@@ -214,60 +220,70 @@ async function convertBlockToMarkdown(
   let result = '';
 
   switch (block.type) {
-    case 'paragraph':
+    case 'paragraph': {
       result = (await convertInlineContent(block.content || [])) + '\n\n';
       break;
+    }
 
-    case 'heading':
+    case 'heading': {
       const level = block.attrs?.level || 1;
       const headingText = await convertInlineContent(block.content || []);
       result = '#'.repeat(level) + ' ' + headingText + '\n\n';
       break;
+    }
 
-    case 'bulletListItem':
+    case 'bulletListItem': {
       const bulletText = await convertInlineContent(block.content || []);
       result = indent + '- ' + bulletText + '\n';
       break;
+    }
 
-    case 'numberedListItem':
+    case 'numberedListItem': {
       const numberedText = await convertInlineContent(block.content || []);
       result = indent + '1. ' + numberedText + '\n';
       break;
+    }
 
-    case 'checkListItem':
+    case 'checkListItem': {
       const checkText = await convertInlineContent(block.content || []);
       const checked = block.attrs?.checked ? 'x' : ' ';
       result = indent + `- [${checked}] ` + checkText + '\n';
       break;
+    }
 
-    case 'codeBlock':
+    case 'codeBlock': {
       const language = block.attrs?.language || '';
       const code = await convertInlineContent(block.content || []);
       result = '```' + language + '\n' + code + '\n```\n\n';
       break;
+    }
 
-    case 'blockquote':
+    case 'blockquote': {
       const quoteText = await convertInlineContent(block.content || []);
       result = '> ' + quoteText + '\n\n';
       break;
+    }
 
-    case 'image':
+    case 'image': {
       const src = block.attrs?.src || '';
       const alt = block.attrs?.alt || '';
       result = `![${alt}](${src})\n\n`;
       break;
+    }
 
-    case 'table':
+    case 'table': {
       // Handle table conversion (simplified)
       result = await convertTableToMarkdown(block);
       break;
+    }
 
-    default:
+    default: {
       // Fallback for unknown block types
       if (block.content) {
         result = (await convertInlineContent(block.content)) + '\n\n';
       }
       break;
+    }
   }
 
   return result;
@@ -322,7 +338,7 @@ async function convertInlineContent(
  * Convert table block to Markdown table
  */
 async function convertTableToMarkdown(
-  block: BlockNoteContent
+  _block: BlockNoteContent
 ): Promise<string> {
   // Simplified table conversion - would need more complex logic for full support
   return '| Column 1 | Column 2 |\n|----------|----------|\n| Cell 1   | Cell 2   |\n\n';

@@ -1,6 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { queue, convertBlocksToMarkdown } from '../queue';
-import { Env, NoteMessage, BlockNoteContent } from '../types/env';
+import {
+  Env,
+  NoteMessage,
+  BlockNoteContent,
+  Message,
+  MessageBatch,
+} from '../types/env';
 
 // Mock environment
 const mockEnv: Env = {

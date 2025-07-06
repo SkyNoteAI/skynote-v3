@@ -8,7 +8,7 @@ The queue consumer processes messages from Cloudflare Queues to convert BlockNot
 
 ## Architecture
 
-```
+```text
 ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
 │   Notes API     │    │   Queue         │    │   Queue         │
 │   (Producer)    │───▶│   (Cloudflare)  │───▶│   Consumer      │
@@ -90,7 +90,7 @@ Required bindings:
 
 ### Dead Letter Queue
 Failed messages are stored in R2 at:
-```
+```text
 dead-letter-queue/{timestamp}-{messageId}.json
 ```
 
