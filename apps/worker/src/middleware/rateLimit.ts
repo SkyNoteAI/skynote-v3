@@ -18,7 +18,7 @@ export const rateLimit = (config: RateLimitConfig) => {
 
       // Get current count from KV (simulated with a simple counter)
       // This is a simplified implementation - in production use Durable Objects
-      const userId = (c as any).get('userId') || 'anonymous';
+      const userId = (c.get('userId') as string) || 'anonymous';
       const requests = await countRequests(userId, windowStart, now);
 
       if (requests >= config.maxRequests) {
@@ -68,7 +68,12 @@ const countRequests = async (
   _windowStart: number,
   _now: number
 ): Promise<number> => {
-  // This is a placeholder - implement with Durable Objects for production
+  // TODO: Implement proper rate limiting with Durable Objects for production
+  // This is a placeholder implementation that always allows requests
+  // In production, this should:
+  // 1. Use Durable Objects to track user request counts
+  // 2. Store timestamps and count requests in the time window
+  // 3. Return actual request count for the user
   // For now, return a low count to allow development
   return 0;
 };

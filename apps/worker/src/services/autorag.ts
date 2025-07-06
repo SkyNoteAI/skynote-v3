@@ -27,7 +27,11 @@ export interface AutoRAGSearchParams {
 }
 
 export class AutoRAGService {
-  constructor(private env: Env) {}
+  private env: Env;
+
+  constructor(env: Env) {
+    this.env = env;
+  }
 
   async search(params: AutoRAGSearchParams): Promise<AutoRAGContext> {
     // For now, this is a mock implementation

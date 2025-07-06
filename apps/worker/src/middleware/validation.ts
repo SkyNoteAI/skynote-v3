@@ -11,12 +11,7 @@ export const validateRequest = (schema: ZodSchema) => {
       c.set('validatedData', validatedData);
 
       // Override req.valid to return our validated data
-      c.req.valid = (target: string) => {
-        if (target === 'json') {
-          return validatedData;
-        }
-        return validatedData;
-      };
+      c.req.valid = () => validatedData;
 
       await next();
     } catch (error) {

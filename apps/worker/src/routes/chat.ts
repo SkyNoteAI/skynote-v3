@@ -15,31 +15,34 @@ const chatRequestSchema = z.object({
   conversation_id: z.string().optional(),
 });
 
-// Schema for chat messages stored in DB
-const chatMessageSchema = z.object({
-  role: z.enum(['user', 'assistant', 'system']),
-  content: z.string(),
-  timestamp: z.string(),
-  sources: z
-    .array(
-      z.object({
-        noteId: z.string(),
-        title: z.string(),
-        excerpt: z.string(),
-        relevance: z.number(),
-      })
-    )
-    .optional(),
-});
+// Schema for chat messages stored in DB (for future use)
+// const chatMessageSchema = z.object({
+//   role: z.enum(['user', 'assistant', 'system']),
+//   content: z.string(),
+//   timestamp: z.string(),
+//   sources: z
+//     .array(
+//       z.object({
+//         noteId: z.string(),
+//         title: z.string(),
+//         excerpt: z.string(),
+//         relevance: z.number(),
+//       })
+//     )
+//     .optional(),
+// });
 
 // Helper function to format prompt with context
-function formatPromptWithContext(message: string, context: any): string {
+function formatPromptWithContext(
+  message: string,
+  context: { sources?: Array<{ title: string; excerpt: string }> }
+): string {
   if (!context || !context.sources || context.sources.length === 0) {
     return message;
   }
 
   const contextText = context.sources
-    .map((source: any, index: number) => {
+    .map((source, index: number) => {
       return `[${index + 1}] ${source.title}\n${source.excerpt}`;
     })
     .join('\n\n');
@@ -48,10 +51,22 @@ function formatPromptWithContext(message: string, context: any): string {
 }
 
 // Helper function to extract sources from AutoRAG context
-function extractSources(context: any): any[] {
+function extractSources(context: {
+  sources?: Array<{
+    id: string;
+    title?: string;
+    excerpt?: string;
+    score?: number;
+  }>;
+}): Array<{
+  noteId: string;
+  title: string;
+  excerpt: string;
+  relevance: number;
+}> {
   if (!context || !context.sources) return [];
 
-  return context.sources.map((source: any) => ({
+  return context.sources.map((source) => ({
     noteId: source.id,
     title: source.title || 'Untitled',
     excerpt: source.excerpt || '',
