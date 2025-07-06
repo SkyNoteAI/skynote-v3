@@ -1,35 +1,42 @@
 import { Outlet } from 'react-router-dom';
+import { useAppStore } from '../store/appStore';
+import { Sidebar } from './Sidebar';
+import { Header } from './Header';
+import { RightPanel } from './RightPanel';
+import { useEffect } from 'react';
+import { useKeyboardShortcuts } from '../hooks/useKeyboardShortcuts';
 
 export function Layout() {
+  const { theme } = useAppStore();
+
+  // Enable keyboard shortcuts
+  useKeyboardShortcuts();
+
+  // Apply theme to document
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', theme === 'dark');
+  }, [theme]);
+
   return (
-    <div className="flex h-screen bg-gray-50">
-      {/* Sidebar placeholder */}
-      <div className="w-64 bg-white shadow-sm border-r border-gray-200">
-        <div className="p-4">
-          <h2 className="text-lg font-semibold text-gray-900">SkyNote AI</h2>
-        </div>
-      </div>
-      
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+      {/* Sidebar */}
+      <Sidebar />
+
       {/* Main content area */}
-      <div className="flex-1 flex flex-col">
-        {/* Header placeholder */}
-        <header className="bg-white shadow-sm border-b border-gray-200">
-          <div className="px-6 py-4">
-            <div className="flex items-center justify-between">
-              <h1 className="text-xl font-semibold text-gray-900">Notes</h1>
-              <div className="flex items-center space-x-4">
-                <button className="text-gray-500 hover:text-gray-700">
-                  Settings
-                </button>
-              </div>
-            </div>
-          </div>
-        </header>
-        
-        {/* Main content */}
-        <main className="flex-1 overflow-hidden">
-          <Outlet />
-        </main>
+      <div className="flex-1 flex flex-col min-w-0">
+        {/* Header */}
+        <Header />
+
+        {/* Main content with right panel */}
+        <div className="flex-1 flex overflow-hidden">
+          {/* Main content */}
+          <main className="flex-1 overflow-hidden">
+            <Outlet />
+          </main>
+
+          {/* Right panel for AI chat */}
+          <RightPanel />
+        </div>
       </div>
     </div>
   );
