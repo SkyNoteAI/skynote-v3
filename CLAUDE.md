@@ -110,6 +110,9 @@ When working on a task:
 # 4. Mark items complete as you go
 ```
 
+## Git Workflow Guideline
+- **Whenever a new task is taken, switch to main, pull latest and create a new feature branch from there**
+
 ## API Patterns
 
 ### Standard Response Format

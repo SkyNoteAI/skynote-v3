@@ -6,11 +6,22 @@ export interface Env {
   R2: R2Bucket;
 
   // Queue
-  NOTE_QUEUE: Queue;
+  NOTE_QUEUE: Queue<NoteMessage>;
 
   // AI
   AI: Ai;
-  AUTORAG: any; // AutoRAG service binding
+  AUTORAG: {
+    search: (params: {
+      query: string;
+      limit: number;
+      userId: string;
+    }) => Promise<any>;
+    getContext: (params: {
+      query: string;
+      limit: number;
+      userId: string;
+    }) => Promise<any>;
+  };
 
   // Environment variables
   JWT_SECRET: string;
@@ -21,11 +32,19 @@ export interface Env {
   RATE_LIMITER: DurableObjectNamespace;
 }
 
+// BlockNote content type - simplified for now, can be expanded with proper BlockNote types
+export interface BlockNoteContent {
+  type: string;
+  content?: BlockNoteContent[];
+  attrs?: Record<string, unknown>;
+  text?: string;
+}
+
 export interface NoteMessage {
   type: 'convert-to-markdown' | 'index-for-search';
   noteId: string;
   userId: string;
-  content: any;
+  content: BlockNoteContent[];
   title?: string;
   metadata?: {
     tags: string[];

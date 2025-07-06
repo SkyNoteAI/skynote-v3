@@ -162,12 +162,23 @@ export default app;
 - [x] Code review feedback addressed
 - [x] Feature branch created and PR submitted
 
-### TASK-005: Implement Notes CRUD API
+### TASK-005: Implement Notes CRUD API ✅ **[COMPLETED]**
 **Priority**: P0  
 **Estimated Time**: 8 hours  
-**Dependencies**: TASK-004
+**Dependencies**: TASK-004  
+**Status**: ✅ **COMPLETED** - PR #3 created and ready for review
 
 **Description**: Create all CRUD endpoints for notes management.
+
+**🎉 Completion Summary**:
+- ✅ **Full CRUD API implemented** with all 6 endpoints
+- ✅ **Comprehensive testing** with 16 new tests (28 total tests passing)
+- ✅ **Type safety improvements** addressing code review feedback
+- ✅ **Production-ready features**: pagination, validation, error handling
+- ✅ **R2 integration** for BlockNote JSON storage
+- ✅ **Queue integration** for markdown conversion
+- ✅ **Security implemented** with user authorization
+- ✅ **PR created**: https://github.com/SkyNoteAI/skynote-v3/pull/3
 
 **Endpoints to Implement**:
 ```typescript
@@ -215,16 +226,21 @@ notesRouter.put('/:id', async (c) => {
 ```
 
 **Checklist**:
-- [ ] GET /api/notes with pagination implemented
-- [ ] POST /api/notes creates note and returns ID
-- [ ] GET /api/notes/:id returns note content
-- [ ] PUT /api/notes/:id updates note and queues conversion
-- [ ] DELETE /api/notes/:id soft deletes note
-- [ ] POST /api/notes/:id/restore restores note
-- [ ] Input validation for all endpoints
-- [ ] Proper error responses for all edge cases
-- [ ] User authorization verified for all operations
-- [ ] R2 operations optimized with proper keys
+- [x] GET /api/notes with pagination implemented
+- [x] POST /api/notes creates note and returns ID
+- [x] GET /api/notes/:id returns note content
+- [x] PUT /api/notes/:id updates note and queues conversion
+- [x] DELETE /api/notes/:id soft deletes note
+- [x] POST /api/notes/:id/restore restores note
+- [x] Input validation for all endpoints
+- [x] Proper error responses for all edge cases
+- [x] User authorization verified for all operations
+- [x] R2 operations optimized with proper keys
+- [x] Comprehensive test suite created (16 tests covering all endpoints)
+- [x] TypeScript type safety improvements implemented
+- [x] Code review feedback addressed
+- [x] Pull request created and ready for review
+- [x] All tests passing (28/28 including existing tests)
 
 ### TASK-006: Implement Queue Consumer for Markdown Conversion
 **Priority**: P0  
@@ -287,6 +303,13 @@ export async function queue(
 - [ ] Conversion metrics tracked
 - [ ] Queue depth monitoring set up
 - [ ] Integration tests for queue processing
+- [ ] **Unit tests written** for markdown converter with 90%+ coverage
+- [ ] **Integration tests** for queue message processing
+- [ ] **Error handling tests** for failed conversions and retries
+- [ ] **Performance tests** for batch processing efficiency
+- [ ] **End-to-end tests** verifying R2 storage and DB updates
+- [ ] **Run tests**: `pnpm test:queue` passes all test cases
+- [ ] **Verify functionality**: Test queue processing with sample notes
 
 ### TASK-007: Implement Authentication System
 **Priority**: P0  
@@ -321,6 +344,13 @@ GET    /api/auth/me
 - [ ] Logout invalidates tokens
 - [ ] User profile endpoint secured
 - [ ] Rate limiting on auth endpoints
+- [ ] **Security tests** for JWT validation and token expiration
+- [ ] **Authentication flow tests** for login/logout scenarios
+- [ ] **Rate limiting tests** to verify endpoint protection
+- [ ] **Session management tests** for token refresh and invalidation
+- [ ] **Integration tests** with Cloudflare Access
+- [ ] **Run tests**: `pnpm test:auth` passes all security tests
+- [ ] **Verify functionality**: Test complete auth flow manually
 
 ### TASK-008: Implement Search APIs
 **Priority**: P1  
@@ -368,6 +398,13 @@ searchRouter.get('/semantic', async (c) => {
 - [ ] Filter support (tags, folders, dates)
 - [ ] Search performance optimized
 - [ ] Search analytics implemented
+- [ ] **Search algorithm tests** for keyword and semantic search accuracy
+- [ ] **Performance tests** for search response times (<200ms)
+- [ ] **Pagination tests** for large result sets
+- [ ] **Filter tests** for all supported filter combinations
+- [ ] **AutoRAG integration tests** with mock and real data
+- [ ] **Run tests**: `pnpm test:search` passes all search tests
+- [ ] **Verify functionality**: Test search with sample queries and verify results
 
 ### TASK-009: Implement AI Chat API
 **Priority**: P1  
@@ -416,6 +453,14 @@ chatRouter.post('/', async (c) => {
 - [ ] Error handling for AI failures
 - [ ] Response time optimization
 - [ ] Token usage tracking
+- [ ] **AI response quality tests** with sample queries
+- [ ] **Context retrieval tests** for relevant source matching
+- [ ] **Streaming tests** for real-time response delivery
+- [ ] **Error handling tests** for AI service failures
+- [ ] **Rate limiting tests** for user protection
+- [ ] **Performance tests** for response time optimization
+- [ ] **Run tests**: `pnpm test:ai-chat` passes all AI integration tests
+- [ ] **Verify functionality**: Test chat with various query types and verify responses
 
 ---
 
@@ -447,6 +492,13 @@ pnpm add tailwindcss @radix-ui/themes
 - [ ] Environment variables set up
 - [ ] Absolute imports configured
 - [ ] Error boundary implemented
+- [ ] **Component tests** for core React components
+- [ ] **Router tests** for navigation and route protection
+- [ ] **State management tests** for Zustand store
+- [ ] **Query tests** for TanStack Query integration
+- [ ] **Error boundary tests** for error handling
+- [ ] **Run tests**: `pnpm test:web` passes all frontend tests
+- [ ] **Verify functionality**: Test application startup and basic navigation
 
 ### TASK-011: Create Layout and Navigation
 **Priority**: P0  
@@ -487,6 +539,14 @@ export function Layout() {
 - [ ] Keyboard shortcuts for navigation
 - [ ] Panel resize functionality
 - [ ] Mobile menu for small screens
+- [ ] **Layout component tests** for responsive behavior
+- [ ] **Navigation tests** for sidebar and routing
+- [ ] **Theme tests** for dark/light mode switching
+- [ ] **Keyboard shortcut tests** for accessibility
+- [ ] **Panel resize tests** for UI interactions
+- [ ] **Mobile responsive tests** for different screen sizes
+- [ ] **Run tests**: `pnpm test:layout` passes all layout tests
+- [ ] **Verify functionality**: Test layout on multiple devices and screen sizes
 
 ### TASK-012: Integrate BlockNote Editor
 **Priority**: P0  
@@ -540,6 +600,14 @@ export function NoteEditor({ noteId }: { noteId: string }) {
 - [ ] Keyboard shortcuts working
 - [ ] Focus management
 - [ ] Performance optimized for large notes
+- [ ] **Editor functionality tests** for content creation and editing
+- [ ] **Auto-save tests** with debounced saving behavior
+- [ ] **Image upload tests** for R2 integration
+- [ ] **Performance tests** for large document handling
+- [ ] **Keyboard shortcut tests** for editor commands
+- [ ] **Integration tests** with backend API
+- [ ] **Run tests**: `pnpm test:editor` passes all editor tests
+- [ ] **Verify functionality**: Test editor with various content types and operations
 
 ### TASK-013: Implement Note Management UI
 **Priority**: P0  
@@ -566,6 +634,14 @@ export function NoteEditor({ noteId }: { noteId: string }) {
 - [ ] Star/favorite toggle
 - [ ] Delete with confirmation
 - [ ] Empty states designed
+- [ ] **Note CRUD tests** for create, read, update, delete operations
+- [ ] **Drag-and-drop tests** for folder organization
+- [ ] **Infinite scroll tests** for large note lists
+- [ ] **Bulk operations tests** for multiple note selection
+- [ ] **Filter and sort tests** for note organization
+- [ ] **UI interaction tests** for all buttons and dialogs
+- [ ] **Run tests**: `pnpm test:notes-ui` passes all note management tests
+- [ ] **Verify functionality**: Test complete note management workflow
 
 ### TASK-014: Build Search Interface
 **Priority**: P1  
@@ -609,6 +685,14 @@ export function SearchBar() {
 - [ ] Search history display
 - [ ] Loading states
 - [ ] Empty/error states
+- [ ] **Search UI tests** for all search interface components
+- [ ] **Type-ahead tests** for search suggestions
+- [ ] **Search mode tests** for keyword/semantic toggle
+- [ ] **Results display tests** for highlighting and formatting
+- [ ] **Filter UI tests** for search refinement
+- [ ] **Search history tests** for user experience
+- [ ] **Run tests**: `pnpm test:search-ui` passes all search interface tests
+- [ ] **Verify functionality**: Test search interface with various queries
 
 ### TASK-015: Implement AI Chat Interface
 **Priority**: P1  
@@ -671,6 +755,14 @@ export function AIChat() {
 - [ ] Copy response button
 - [ ] Insert to note action
 - [ ] Chat history persistence
+- [ ] **Chat UI tests** for message display and interactions
+- [ ] **Streaming tests** for real-time message updates
+- [ ] **Source citation tests** for link functionality
+- [ ] **Chat history tests** for message persistence
+- [ ] **Action button tests** for copy and insert features
+- [ ] **Integration tests** with AI chat API
+- [ ] **Run tests**: `pnpm test:chat-ui` passes all chat interface tests
+- [ ] **Verify functionality**: Test complete chat interaction flow
 
 ### TASK-016: Create Authentication Flow
 **Priority**: P0  
@@ -696,6 +788,14 @@ export function AIChat() {
 - [ ] Session persistence
 - [ ] Auth state management
 - [ ] Protected route wrapper
+- [ ] **Authentication UI tests** for login/logout forms
+- [ ] **Protected route tests** for access control
+- [ ] **OAuth flow tests** for third-party authentication
+- [ ] **Session management tests** for state persistence
+- [ ] **Error handling tests** for authentication failures
+- [ ] **Redirect tests** for post-authentication navigation
+- [ ] **Run tests**: `pnpm test:auth-ui` passes all authentication tests
+- [ ] **Verify functionality**: Test complete authentication workflow
 
 ### TASK-017: Implement Settings and Preferences
 **Priority**: P2  
@@ -722,6 +822,14 @@ export function AIChat() {
 - [ ] Import functionality
 - [ ] Save confirmation
 - [ ] Settings persistence
+- [ ] **Settings form tests** for all preference options
+- [ ] **Avatar upload tests** for image handling
+- [ ] **Theme preference tests** for UI changes
+- [ ] **Data export/import tests** for user data management
+- [ ] **Settings persistence tests** for user preferences
+- [ ] **Form validation tests** for input requirements
+- [ ] **Run tests**: `pnpm test:settings` passes all settings tests
+- [ ] **Verify functionality**: Test all settings and preferences
 
 ---
 
@@ -752,6 +860,13 @@ export function AIChat() {
 - [ ] Monitoring configured
 - [ ] Cost alerts set up
 - [ ] Documentation updated
+- [ ] **AutoRAG integration tests** for indexing and querying
+- [ ] **Embedding quality tests** for search relevance
+- [ ] **Performance tests** for query response times
+- [ ] **Cost monitoring tests** for usage tracking
+- [ ] **Index synchronization tests** for data consistency
+- [ ] **Run tests**: `pnpm test:autorag` passes all RAG integration tests
+- [ ] **Verify functionality**: Test AutoRAG with sample documents and queries
 
 ### TASK-019: Optimize Markdown Generation for RAG
 **Priority**: P1  
@@ -802,6 +917,13 @@ ${metadata.relatedNotes.map(note =>
 - [ ] RAG quality improved
 - [ ] A/B testing results
 - [ ] Documentation updated
+- [ ] **Markdown optimization tests** for RAG performance
+- [ ] **Metadata extraction tests** for content enrichment
+- [ ] **Chunk boundary tests** for optimal segmentation
+- [ ] **RAG quality tests** comparing before/after optimization
+- [ ] **Performance impact tests** for processing overhead
+- [ ] **Run tests**: `pnpm test:markdown-optimization` passes all optimization tests
+- [ ] **Verify functionality**: Test RAG performance with optimized markdown
 
 ### TASK-020: Implement Smart Suggestions
 **Priority**: P2  
@@ -843,6 +965,13 @@ suggestRouter.post('/tags', async (c) => {
 - [ ] Model fine-tuning data
 - [ ] Performance metrics
 - [ ] Cost optimization
+- [ ] **AI suggestion quality tests** for accuracy and relevance
+- [ ] **Confidence scoring tests** for suggestion reliability
+- [ ] **Performance tests** for suggestion generation speed
+- [ ] **User feedback tests** for improvement mechanisms
+- [ ] **Cost optimization tests** for efficient AI usage
+- [ ] **Run tests**: `pnpm test:smart-suggestions` passes all suggestion tests
+- [ ] **Verify functionality**: Test AI suggestions with various content types
 
 ---
 
@@ -935,6 +1064,13 @@ jobs:
 - [ ] Rollback strategy
 - [ ] Deployment notifications
 - [ ] Monitoring alerts
+- [ ] **CI/CD pipeline tests** for workflow validation
+- [ ] **Deployment tests** for successful deployments
+- [ ] **Rollback tests** for deployment recovery
+- [ ] **Environment tests** for proper configuration
+- [ ] **Security tests** for secrets management
+- [ ] **Run tests**: All CI/CD workflows pass successfully
+- [ ] **Verify functionality**: Test complete deployment pipeline
 
 ### TASK-023: Performance Optimization
 **Priority**: P1  
@@ -961,6 +1097,14 @@ jobs:
 - [ ] Search index optimization
 - [ ] Performance monitoring
 - [ ] Load testing completed
+- [ ] **Performance benchmarks** for all optimizations
+- [ ] **Load testing** with realistic user scenarios
+- [ ] **Bundle size tests** for optimal loading
+- [ ] **API response time tests** for caching effectiveness
+- [ ] **Database performance tests** for query optimization
+- [ ] **Memory usage tests** for resource efficiency
+- [ ] **Run tests**: `pnpm test:performance` passes all performance tests
+- [ ] **Verify functionality**: Test application performance under load
 
 ### TASK-024: Security Audit
 **Priority**: P0  
@@ -980,6 +1124,15 @@ jobs:
 - [ ] File upload validation
 - [ ] Secrets management
 - [ ] Security headers configured
+- [ ] **Security penetration tests** for vulnerability assessment
+- [ ] **Input validation tests** for all user inputs
+- [ ] **Authentication bypass tests** for access control
+- [ ] **Rate limiting tests** for abuse prevention
+- [ ] **File upload security tests** for malicious content
+- [ ] **SQL injection tests** for database protection
+- [ ] **XSS protection tests** for script injection prevention
+- [ ] **Run tests**: `pnpm test:security` passes all security tests
+- [ ] **Verify functionality**: Complete security audit with external tools
 
 ### TASK-025: Documentation
 **Priority**: P1  
@@ -1006,6 +1159,13 @@ jobs:
 - [ ] Troubleshooting guide
 - [ ] Contributing guidelines
 - [ ] API client examples
+- [ ] **Documentation tests** for code examples and setup instructions
+- [ ] **API documentation tests** for endpoint accuracy
+- [ ] **Setup guide tests** for new developer onboarding
+- [ ] **Link validation tests** for documentation references
+- [ ] **Code example tests** for functionality verification
+- [ ] **Run tests**: `pnpm test:docs` validates all documentation
+- [ ] **Verify functionality**: Test documentation with new team members
 
 ### TASK-026: Launch Preparation
 **Priority**: P0  
@@ -1030,6 +1190,82 @@ jobs:
 
 ---
 
+## Testing Strategy and Commands
+
+### Test Organization
+Each task now includes comprehensive testing requirements with specific test commands. Follow this testing hierarchy:
+
+1. **Unit Tests**: Test individual functions and components in isolation
+2. **Integration Tests**: Test component interactions and API integrations
+3. **End-to-End Tests**: Test complete user workflows
+4. **Performance Tests**: Test response times and resource usage
+5. **Security Tests**: Test authentication, authorization, and input validation
+
+### Test Commands by Category
+
+```bash
+# Core Testing Commands
+pnpm test                    # Run all tests
+pnpm test:unit              # Unit tests only
+pnpm test:integration       # Integration tests only
+pnpm test:e2e               # End-to-end tests
+pnpm test:watch             # Run tests in watch mode
+pnpm test:coverage          # Run tests with coverage report
+
+# Component-Specific Test Commands
+pnpm test:queue             # Test queue processing (TASK-006)
+pnpm test:auth              # Test authentication system (TASK-007)
+pnpm test:search            # Test search functionality (TASK-008)
+pnpm test:ai-chat           # Test AI chat integration (TASK-009)
+pnpm test:web               # Test React frontend (TASK-010)
+pnpm test:layout            # Test layout components (TASK-011)
+pnpm test:editor            # Test BlockNote editor (TASK-012)
+pnpm test:notes-ui          # Test note management UI (TASK-013)
+pnpm test:search-ui         # Test search interface (TASK-014)
+pnpm test:chat-ui           # Test chat interface (TASK-015)
+pnpm test:auth-ui           # Test authentication UI (TASK-016)
+pnpm test:settings          # Test settings functionality (TASK-017)
+pnpm test:autorag           # Test AutoRAG integration (TASK-018)
+pnpm test:markdown-optimization  # Test markdown optimization (TASK-019)
+pnpm test:smart-suggestions      # Test AI suggestions (TASK-020)
+pnpm test:performance            # Test performance benchmarks (TASK-023)
+pnpm test:security               # Test security measures (TASK-024)
+pnpm test:docs                   # Test documentation validity (TASK-025)
+```
+
+### Test Quality Standards
+- **Unit Tests**: Minimum 90% code coverage
+- **Integration Tests**: Cover all API endpoints and component interactions
+- **E2E Tests**: Cover all critical user workflows
+- **Performance Tests**: Meet specified benchmarks (e.g., <200ms search response)
+- **Security Tests**: Pass all vulnerability assessments
+
+### Test Verification Process
+For each task, follow this verification sequence:
+1. **Write tests** according to the task checklist
+2. **Run specific tests** using the task-specific command
+3. **Verify functionality** manually as specified in checklist
+4. **Check test coverage** to ensure quality standards
+5. **Update test suite** if new edge cases are discovered
+
+### Test Environment Setup
+```bash
+# Install test dependencies
+pnpm install --dev
+
+# Set up test environment variables
+cp .env.test.example .env.test
+
+# Initialize test database
+pnpm db:migrate --env test
+pnpm db:seed --env test
+
+# Start test services
+pnpm dev:test
+```
+
+---
+
 ## Task Execution Order
 
 ### Phase 1: Foundation (Week 1-2)
@@ -1040,7 +1276,7 @@ jobs:
 5. TASK-010: Initialize React Application
 
 ### Phase 2: Core Features (Week 3-4)
-6. TASK-005: Implement Notes CRUD API
+6. ✅ TASK-005: Implement Notes CRUD API **[COMPLETED]**
 7. TASK-006: Implement Queue Consumer
 8. TASK-007: Implement Authentication System
 9. TASK-011: Create Layout and Navigation
