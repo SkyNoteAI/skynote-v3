@@ -327,6 +327,8 @@ export async function queue(
 **Estimated Time**: 6 hours  
 **Dependencies**: TASK-004
 
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
+
 **Description**: Set up authentication using Cloudflare Access and JWT tokens.
 
 **Implementation Steps**:
@@ -367,6 +369,8 @@ GET    /api/auth/me
 **Priority**: P1  
 **Estimated Time**: 8 hours  
 **Dependencies**: TASK-005, TASK-006
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Create search endpoints for keyword and semantic search.
 
@@ -421,6 +425,8 @@ searchRouter.get('/semantic', async (c) => {
 **Priority**: P1  
 **Estimated Time**: 6 hours  
 **Dependencies**: TASK-008
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Create RAG-powered chat endpoint for conversational search.
 
@@ -482,6 +488,8 @@ chatRouter.post('/', async (c) => {
 **Estimated Time**: 4 hours  
 **Dependencies**: TASK-002
 
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
+
 **Description**: Set up React application with TypeScript, routing, and core dependencies.
 
 **Setup Steps**:
@@ -515,6 +523,8 @@ pnpm add tailwindcss @radix-ui/themes
 **Priority**: P0  
 **Estimated Time**: 6 hours  
 **Dependencies**: TASK-010
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Implement the main application layout with sidebar, header, and panels.
 
@@ -563,6 +573,8 @@ export function Layout() {
 **Priority**: P0  
 **Estimated Time**: 8 hours  
 **Dependencies**: TASK-011
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Implement BlockNote editor with all required features and customizations.
 
@@ -625,6 +637,8 @@ export function NoteEditor({ noteId }: { noteId: string }) {
 **Estimated Time**: 8 hours  
 **Dependencies**: TASK-012
 
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
+
 **Description**: Create UI for creating, listing, and organizing notes.
 
 **Components to Build**:
@@ -658,6 +672,8 @@ export function NoteEditor({ noteId }: { noteId: string }) {
 **Priority**: P1  
 **Estimated Time**: 6 hours  
 **Dependencies**: TASK-013
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Create unified search interface with keyword and semantic search modes.
 
@@ -709,6 +725,8 @@ export function SearchBar() {
 **Priority**: P1  
 **Estimated Time**: 8 hours  
 **Dependencies**: TASK-014
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Build the AI chat interface for RAG-powered conversations.
 
@@ -780,6 +798,8 @@ export function AIChat() {
 **Estimated Time**: 6 hours  
 **Dependencies**: TASK-010
 
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
+
 **Description**: Implement login, logout, and session management.
 
 **Pages to Create**:
@@ -812,6 +832,8 @@ export function AIChat() {
 **Priority**: P2  
 **Estimated Time**: 4 hours  
 **Dependencies**: TASK-016
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Create settings page for user preferences and configurations.
 
@@ -851,6 +873,8 @@ export function AIChat() {
 **Estimated Time**: 4 hours  
 **Dependencies**: TASK-001, TASK-006
 
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
+
 **Description**: Set up and configure AutoRAG for the application.
 
 **Configuration Steps**:
@@ -883,6 +907,8 @@ export function AIChat() {
 **Priority**: P1  
 **Estimated Time**: 4 hours  
 **Dependencies**: TASK-006, TASK-018
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Optimize markdown output for better RAG performance.
 
@@ -941,6 +967,8 @@ ${metadata.relatedNotes.map(note =>
 **Estimated Time**: 6 hours  
 **Dependencies**: TASK-019
 
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
+
 **Description**: Build AI-powered suggestion features.
 
 **Features**:
@@ -993,6 +1021,8 @@ suggestRouter.post('/tags', async (c) => {
 **Estimated Time**: 8 hours  
 **Dependencies**: All development tasks
 
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
+
 **Description**: Create comprehensive unit tests for all components.
 
 **Test Coverage Areas**:
@@ -1030,6 +1060,8 @@ suggestRouter.post('/tags', async (c) => {
 **Priority**: P1  
 **Estimated Time**: 6 hours  
 **Dependencies**: TASK-021
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Create GitHub Actions workflow for automated testing and deployment.
 
@@ -1088,6 +1120,8 @@ jobs:
 **Estimated Time**: 8 hours  
 **Dependencies**: All development tasks
 
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
+
 **Description**: Optimize application performance across all layers.
 
 **Optimization Areas**:
@@ -1122,6 +1156,8 @@ jobs:
 **Estimated Time**: 6 hours  
 **Dependencies**: All development tasks
 
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
+
 **Description**: Conduct security audit and implement fixes.
 
 **Security Checklist**:
@@ -1149,6 +1185,8 @@ jobs:
 **Priority**: P1  
 **Estimated Time**: 6 hours  
 **Dependencies**: All development tasks
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Create comprehensive documentation for the application.
 
@@ -1182,6 +1220,8 @@ jobs:
 **Priority**: P0  
 **Estimated Time**: 8 hours  
 **Dependencies**: All tasks
+
+**Git Workflow**: Switch to main branch, pull latest, create a new feature branch for this task. Once complete, create a PR.
 
 **Description**: Final preparation for production launch.
 
