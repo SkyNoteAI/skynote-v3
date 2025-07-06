@@ -7,6 +7,7 @@ import { requestLogger } from './middleware/logging';
 import { rateLimit, rateLimitConfigs } from './middleware/rateLimit';
 import { notesRouter } from './routes/notes';
 import { authRouter } from './routes/auth';
+import { searchRouter } from './routes/search';
 import { queue } from './queue';
 
 const app = new Hono();
@@ -80,6 +81,7 @@ app.get('/health', (c) => {
 // API routes
 app.route('/api/auth', authRouter);
 app.route('/api/notes', notesRouter);
+app.route('/api/search', searchRouter);
 
 export default app;
 
