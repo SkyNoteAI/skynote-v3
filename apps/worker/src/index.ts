@@ -14,7 +14,10 @@ const app = new Hono();
 app.use(
   '*',
   cors({
-    origin: ['http://localhost:5173', 'https://skynote-ai.com'], // Update with your domains
+    origin: (c) => {
+      const env = c.env as unknown as Env;
+      return env?.ALLOWED_ORIGINS?.split(',') || ['http://localhost:5173'];
+    },
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
   })

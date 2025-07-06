@@ -1,4 +1,3 @@
-/* eslint-disable no-undef */
 export interface Env {
   // Database
   DB: D1Database;
@@ -16,6 +15,7 @@ export interface Env {
   // Environment variables
   JWT_SECRET: string;
   ENVIRONMENT: string;
+  ALLOWED_ORIGINS?: string;
 
   // Rate limiting
   RATE_LIMITER: DurableObjectNamespace;

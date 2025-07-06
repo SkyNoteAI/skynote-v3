@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Context, Next } from 'hono';
 
 interface RateLimitConfig {
@@ -76,7 +75,9 @@ const countRequests = async (
 
 // Common rate limit configurations
 export const rateLimitConfigs = {
-  strict: { windowMs: 60000, maxRequests: 10 }, // 10 requests per minute
+  strict: { windowMs: 60000, maxRequests: 30 }, // 30 requests per minute
   moderate: { windowMs: 60000, maxRequests: 100 }, // 100 requests per minute
   lenient: { windowMs: 60000, maxRequests: 1000 }, // 1000 requests per minute
+  // Burst protection for high-frequency operations
+  burstProtection: { windowMs: 1000, maxRequests: 10 }, // 10 requests per second
 };
