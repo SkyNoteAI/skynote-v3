@@ -920,6 +920,7 @@ jobs:
 ```
 
 **Checklist**:
+- [ ] Fix ESLint configuration issues in monorepo workspace
 - [ ] GitHub Actions workflow created
 - [ ] Test job configured
 - [ ] Build job working
