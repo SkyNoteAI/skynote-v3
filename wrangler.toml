@@ -21,6 +21,7 @@ bucket_name = "cloudnotes-dev-storage"
 binding = "DB"
 database_name = "cloudnotes-db-dev"
 database_id = "b454a91d-9092-41b7-b0b8-7e775320dcea"  # Replace with actual ID
+migrations_dir = "packages/database/migrations"
 
 # Queue producer binding
 [[queues.producers]]
