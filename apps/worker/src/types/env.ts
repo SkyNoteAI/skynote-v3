@@ -53,3 +53,20 @@ export interface NoteMessage {
     updated_at: string;
   };
 }
+
+// Cloudflare Workers queue types
+export interface Message<T = unknown> {
+  id: string;
+  body: T;
+  attempts: number;
+  timestamp: Date;
+  ack(): void;
+  retry(options?: { delaySeconds?: number }): void;
+}
+
+export interface MessageBatch<T = unknown> {
+  messages: Message<T>[];
+  queue: string;
+  retryAll(): void;
+  ackAll(): void;
+}

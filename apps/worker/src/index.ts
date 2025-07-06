@@ -7,6 +7,7 @@ import { requestLogger } from './middleware/logging';
 import { rateLimit, rateLimitConfigs } from './middleware/rateLimit';
 import { notesRouter } from './routes/notes';
 import { authRouter } from './routes/auth';
+import { queue } from './queue';
 
 const app = new Hono();
 
@@ -64,3 +65,6 @@ app.route('/api/auth', authRouter);
 app.route('/api/notes', notesRouter);
 
 export default app;
+
+// Export queue handler for Cloudflare Workers
+export { queue };
