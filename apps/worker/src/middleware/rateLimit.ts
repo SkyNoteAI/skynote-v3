@@ -80,4 +80,7 @@ export const rateLimitConfigs = {
   lenient: { windowMs: 60000, maxRequests: 1000 }, // 1000 requests per minute
   // Burst protection for high-frequency operations
   burstProtection: { windowMs: 1000, maxRequests: 10 }, // 10 requests per second
+  // AI-specific rate limiting
+  aiChat: { windowMs: 60000, maxRequests: 20 }, // 20 AI chat requests per minute
+  aiGeneration: { windowMs: 300000, maxRequests: 50 }, // 50 AI requests per 5 minutes
 };

@@ -8,6 +8,7 @@ import { rateLimit, rateLimitConfigs } from './middleware/rateLimit';
 import { notesRouter } from './routes/notes';
 import { authRouter } from './routes/auth';
 import { searchRouter } from './routes/search';
+import { chatRouter } from './routes/chat';
 import { queue } from './queue';
 
 const app = new Hono();
@@ -82,6 +83,7 @@ app.get('/health', (c) => {
 app.route('/api/auth', authRouter);
 app.route('/api/notes', notesRouter);
 app.route('/api/search', searchRouter);
+app.route('/api/chat', chatRouter);
 
 export default app;
 
