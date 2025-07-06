@@ -170,9 +170,10 @@ A notes application that automatically indexes all content using Cloudflare Auto
   - Citation of source notes
   
 - **Smart Suggestions**
-  - Related notes sidebar
+  - Related notes sidebar (real-time updates while editing)
   - Auto-tagging suggestions
   - Title generation from content
+  - Dynamic content recommendations
 
 ##### 4.1.5 User Management
 **Priority**: P1 (Should Have)
@@ -495,8 +496,8 @@ POST /api/chat
 │               │                     │                   │
 │ - Folders     │  - BlockNote Editor │  - AI Chat       │
 │ - Tags        │  - Note List        │  - Related Notes │
-│ - Recent      │  - Search Results   │  - Note Info     │
-│ - Starred     │                     │                   │
+│ - Recent      │  - Search Results   │    (Real-time)    │
+│ - Starred     │                     │  - Note Info     │
 │               │                     │                   │
 └───────────────┴─────────────────────┴──────────────────┘
 ```
@@ -567,6 +568,18 @@ function NoteEditor({ noteId, initialContent }) {
 - Suggested questions based on current note
 - Copy/insert responses to notes
 - Streaming responses for better UX
+
+##### 7.2.4 Related Notes Sidebar
+- Real-time updates as user types
+- Similarity scoring visualization
+- Preview cards with excerpts
+- Quick navigation to related notes
+- Relevance threshold controls
+- Max 5-10 related notes shown
+- Updates triggered on:
+  - Content changes (debounced)
+  - Note saves
+  - Manual refresh button
 
 ### 8. Performance Requirements
 
