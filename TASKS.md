@@ -100,14 +100,14 @@ CREATE TABLE users (
 ```
 
 **Checklist**:
-- [ ] All tables created as per PRD schema
-- [ ] Indexes added for performance
-- [ ] Foreign key constraints verified
-- [ ] Migration scripts tested locally
-- [ ] Rollback scripts created
-- [ ] Seed data script created
-- [ ] D1 database deployed to dev environment
-- [ ] Database backup strategy documented
+- [x] All tables created as per PRD schema
+- [x] Indexes added for performance
+- [x] Foreign key constraints verified
+- [x] Migration scripts tested locally
+- [x] Rollback scripts created
+- [x] Seed data script created
+- [x] D1 database deployed to dev environment
+- [x] Database backup strategy documented
 
 ---
 
@@ -920,6 +920,7 @@ jobs:
 ```
 
 **Checklist**:
+- [ ] Fix ESLint configuration issues in monorepo workspace
 - [ ] GitHub Actions workflow created
 - [ ] Test job configured
 - [ ] Build job working
