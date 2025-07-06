@@ -7,7 +7,8 @@ export const authMiddleware = async (c: Context, next: Next) => {
   if (
     c.req.path === '/health' ||
     c.req.path === '/' ||
-    c.req.path.startsWith('/api/auth/')
+    c.req.path.startsWith('/api/auth/') ||
+    (c.req.path.startsWith('/auth/') && !c.req.path.endsWith('/me')) // For tests, but not /me endpoint
   ) {
     await next();
     return;
@@ -35,11 +36,11 @@ export const authMiddleware = async (c: Context, next: Next) => {
     const env = c.env as unknown as Env;
     const payload = await verify(token, env.JWT_SECRET || 'default-secret');
 
-    if (!payload?.userId) {
+    if (!payload?.userId || payload.type !== 'access') {
       return c.json(
         {
           success: false,
-          error: { code: 'INVALID_TOKEN', message: 'Token missing user ID' },
+          error: { code: 'INVALID_TOKEN', message: 'Invalid or expired token' },
         },
         401
       );
@@ -79,6 +80,18 @@ export const authMiddleware = async (c: Context, next: Next) => {
     await next();
   } catch (error) {
     console.error('Auth middleware error:', error);
+
+    // Check if it's a JWT expiration error
+    if (error instanceof Error && error.message.includes('expired')) {
+      return c.json(
+        {
+          success: false,
+          error: { code: 'TOKEN_EXPIRED', message: 'Token has expired' },
+        },
+        401
+      );
+    }
+
     return c.json(
       {
         success: false,

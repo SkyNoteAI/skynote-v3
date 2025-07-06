@@ -28,6 +28,12 @@ export interface Env {
   ENVIRONMENT: string;
   ALLOWED_ORIGINS?: string;
 
+  // Authentication
+  CLOUDFLARE_ACCESS_AUD?: string;
+  CLOUDFLARE_ACCESS_DOMAIN?: string;
+  OAUTH_GOOGLE_CLIENT_ID?: string;
+  OAUTH_GOOGLE_CLIENT_SECRET?: string;
+
   // Rate limiting
   RATE_LIMITER: DurableObjectNamespace;
 }
