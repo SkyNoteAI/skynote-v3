@@ -42,3 +42,14 @@ global.IntersectionObserver = class IntersectionObserver {
     return null;
   }
 } as any;
+
+// Mock auth store
+vi.mock('../store/authStore', () => ({
+  useAuthStore: {
+    getState: () => ({
+      token: 'mock-token',
+      user: { id: '1', email: 'test@example.com', name: 'Test User' },
+      isAuthenticated: true,
+    }),
+  },
+}));
