@@ -1,6 +1,5 @@
 import { Hono } from 'hono';
-import { Env, NoteMessage } from '../types/env';
-import { HonoEnv } from '../types/hono';
+import { Env, NoteMessage, BlockNoteContent } from '../types/env';
 
 export const notesRouter = new Hono();
 
@@ -37,16 +36,16 @@ const generateR2Key = (userId: string, noteId: string) =>
   `users/${userId}/notes/${noteId}`;
 
 // Helper to count words and blocks
-const countContent = (content: any) => {
+const countContent = (content: BlockNoteContent[]) => {
   if (!content || !Array.isArray(content))
     return { wordCount: 0, blockCount: 0 };
 
   let wordCount = 0;
   let blockCount = content.length;
 
-  content.forEach((block: any) => {
+  content.forEach((block: BlockNoteContent) => {
     if (block.content && Array.isArray(block.content)) {
-      block.content.forEach((item: any) => {
+      block.content.forEach((item: BlockNoteContent) => {
         if (item.text && typeof item.text === 'string') {
           wordCount += item.text
             .split(/\s+/)

@@ -1,7 +1,6 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { Env } from './types/env';
-import { HonoEnv } from './types/hono';
 import { authMiddleware } from './middleware/auth';
 import { errorHandler } from './middleware/error';
 import { requestLogger } from './middleware/logging';
