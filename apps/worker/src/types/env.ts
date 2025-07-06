@@ -6,7 +6,7 @@ export interface Env {
   R2: R2Bucket;
 
   // Queue
-  NOTE_QUEUE: Queue;
+  NOTE_QUEUE: Queue<any>;
 
   // AI
   AI: Ai;

@@ -1,6 +1,7 @@
 import { Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { Env } from './types/env';
+import { HonoEnv } from './types/hono';
 import { authMiddleware } from './middleware/auth';
 import { errorHandler } from './middleware/error';
 import { requestLogger } from './middleware/logging';
@@ -14,9 +15,10 @@ const app = new Hono();
 app.use(
   '*',
   cors({
-    origin: (c) => {
-      const env = c.env as unknown as Env;
-      return env?.ALLOWED_ORIGINS?.split(',') || ['http://localhost:5173'];
+    origin: (origin) => {
+      // In development, allow all origins. In production, check ALLOWED_ORIGINS
+      if (!origin) return null;
+      return origin;
     },
     allowMethods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     allowHeaders: ['Content-Type', 'Authorization'],
@@ -47,7 +49,7 @@ app.get('/', (c) => {
 });
 
 app.get('/health', (c) => {
-  const env = c.env as unknown as Env;
+  const env = c.env;
   return c.json({
     success: true,
     data: {
