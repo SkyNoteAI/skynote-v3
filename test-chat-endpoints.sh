@@ -19,7 +19,7 @@ curl -X POST "$BASE_URL/api/chat" \
     "context_limit": 3
   }' | jq .
 
-echo -e "\n📋 2. Testing chat with streaming..."
+printf "\n📋 2. Testing chat with streaming...\n"
 curl -X POST "$BASE_URL/api/chat" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AUTH_TOKEN" \
@@ -28,15 +28,15 @@ curl -X POST "$BASE_URL/api/chat" \
     "stream": true
   }' | jq .
 
-echo -e "\n📋 3. Testing chat history..."
+printf "\n📋 3. Testing chat history...\n"
 curl -X GET "$BASE_URL/api/chat/history" \
   -H "Authorization: Bearer $AUTH_TOKEN" | jq .
 
-echo -e "\n📋 4. Testing conversations list..."
+printf "\n📋 4. Testing conversations list...\n"
 curl -X GET "$BASE_URL/api/chat/conversations" \
   -H "Authorization: Bearer $AUTH_TOKEN" | jq .
 
-echo -e "\n📋 5. Testing validation with invalid input..."
+printf "\n📋 5. Testing validation with invalid input...\n"
 curl -X POST "$BASE_URL/api/chat" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AUTH_TOKEN" \
@@ -45,4 +45,4 @@ curl -X POST "$BASE_URL/api/chat" \
     "context_limit": 15
   }' | jq .
 
-echo -e "\n✅ Chat API testing completed!"
+printf "\n✅ Chat API testing completed!\n"
