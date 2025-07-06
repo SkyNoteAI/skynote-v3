@@ -99,10 +99,56 @@
 /* BlockNote editor styles */
 .bn-editor {
   @apply bg-background text-foreground;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .bn-editor .bn-block-content {
   @apply text-foreground;
+}
+
+.bn-editor .bn-block-outer {
+  @apply transition-colors;
+}
+
+.bn-editor .bn-block-outer:hover {
+  @apply bg-muted/50;
+}
+
+.bn-editor .bn-block-outer.bn-block-selected {
+  @apply bg-accent/50;
+}
+
+.bn-editor .bn-editor-content {
+  @apply min-h-full;
+}
+
+.bn-editor .bn-slash-menu {
+  @apply bg-popover border border-border rounded-md shadow-lg;
+}
+
+.bn-editor .bn-slash-menu .bn-slash-menu-item {
+  @apply text-foreground hover:bg-accent hover:text-accent-foreground;
+}
+
+.bn-editor .bn-toolbar {
+  @apply bg-popover border border-border rounded-md shadow-lg;
+}
+
+.bn-editor .bn-toolbar-button {
+  @apply text-muted-foreground hover:text-foreground hover:bg-accent;
+}
+
+.bn-editor .bn-toolbar-button.bn-active {
+  @apply bg-accent text-accent-foreground;
+}
+
+/* Focus styles */
+.bn-editor:focus-within {
+  @apply outline-none;
+}
+
+.bn-editor .bn-block-content:focus {
+  @apply outline-none;
 }
 
 /* Scrollbar styles */
