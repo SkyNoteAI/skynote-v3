@@ -1,0 +1,69 @@
+name = "cloudnotes-api-dev"
+main = "apps/worker/src/index.ts"
+compatibility_date = "2024-01-01"
+compatibility_flags = ["nodejs_compat"]
+
+# Workers configuration
+workers_dev = true
+
+# Environment variables (non-sensitive)
+[vars]
+ENVIRONMENT = "development"
+LOG_LEVEL = "debug"
+
+# R2 bucket binding
+[[r2_buckets]]
+binding = "R2"
+bucket_name = "cloudnotes-dev-storage"
+
+# D1 database binding
+[[d1_databases]]
+binding = "DB"
+database_name = "cloudnotes-db-dev"
+database_id = "b454a91d-9092-41b7-b0b8-7e775320dcea"  # Replace with actual ID
+
+# Queue producer binding
+[[queues.producers]]
+queue = "note-processing-dev"
+binding = "NOTE_QUEUE"
+
+# Queue consumer configuration
+[[queues.consumers]]
+queue = "note-processing-dev"
+max_batch_size = 10
+max_batch_timeout = 10
+max_retries = 3
+dead_letter_queue = "note-processing-dlq"
+
+# AI binding
+[ai]
+binding = "AI"
+
+# Production environment configuration
+[env.production]
+name = "cloudnotes-api-prod"
+workers_dev = false
+
+[env.production.vars]
+ENVIRONMENT = "production"
+LOG_LEVEL = "info"
+
+[[env.production.r2_buckets]]
+binding = "R2"
+bucket_name = "cloudnotes-prod-storage"
+
+[[env.production.d1_databases]]
+binding = "DB"
+database_name = "cloudnotes-db-prod"
+database_id = "your-prod-database-id"  # Replace with actual ID
+
+[[env.production.queues.producers]]
+queue = "note-processing-prod"
+binding = "NOTE_QUEUE"
+
+[[env.production.queues.consumers]]
+queue = "note-processing-prod"
+max_batch_size = 25
+max_batch_timeout = 5
+max_retries = 3
+dead_letter_queue = "note-processing-prod-dlq"

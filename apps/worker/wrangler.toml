@@ -1,0 +1,14 @@
+name = "skynote-ai-worker"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[env.dev]
+name = "skynote-ai-worker-dev"
+# Add your development environment configuration here
+# [[env.dev.r2_buckets]]
+# binding = "R2"
+# bucket_name = "cloudnotes-dev-storage"
+
+[env.production]
+name = "skynote-ai-worker-prod"
+# Add your production environment configuration here

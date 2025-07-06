@@ -1,0 +1,25 @@
+{
+  "name": "database",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "migrate": "wrangler d1 migrations apply cloudnotes-db-dev --env dev",
+    "migrate:prod": "wrangler d1 migrations apply cloudnotes-db-prod --env production",
+    "seed": "wrangler d1 execute cloudnotes-db-dev --env dev --file ./seeds/dev.sql",
+    "create-migration": "wrangler d1 migrations create cloudnotes-db-dev",
+    "test": "vitest",
+    "lint": "eslint . --ext ts --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts --fix",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "eslint": "^8.55.0",
+    "typescript": "^5.2.2",
+    "vitest": "^1.0.4",
+    "wrangler": "^3.22.0"
+  }
+}
