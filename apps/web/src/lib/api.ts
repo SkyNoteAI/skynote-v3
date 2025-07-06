@@ -168,6 +168,36 @@ export const notesApi = {
 
   getFilterOptions: async () =>
     makeRequest<{ tags: any[]; folders: any[] }>('/search/filters'),
+
+  // Chat methods
+  chatWithAI: async (params: {
+    message: string;
+    noteId?: string;
+    chatHistory?: any[];
+  }) =>
+    makeRequest<{ response: string; sources: any[] }>('/chat', {
+      method: 'POST',
+      body: JSON.stringify({
+        message: params.message,
+        note_id: params.noteId,
+        chat_history: params.chatHistory,
+      }),
+    }),
+
+  getChatHistory: async (params?: { limit?: number; offset?: number }) =>
+    makeRequest<{ messages: any[] }>(
+      `/chat/history?${new URLSearchParams(params as any).toString()}`
+    ),
+
+  getSuggestedQuestions: async (params: { noteId?: string }) =>
+    makeRequest<{ questions: any[] }>(
+      `/chat/suggestions?${new URLSearchParams(params as any).toString()}`
+    ),
+
+  clearChatHistory: async () =>
+    makeRequest<{ success: boolean }>('/chat/history', {
+      method: 'DELETE',
+    }),
 };
 
 // Search API
@@ -205,5 +235,34 @@ export const chatApi = {
     makeRequest<{ response: string; sources: any[] }>('/chat', {
       method: 'POST',
       body: JSON.stringify({ message, context_limit: contextLimit }),
+    }),
+
+  chatWithAI: async (params: {
+    message: string;
+    noteId?: string;
+    chatHistory?: any[];
+  }) =>
+    makeRequest<{ response: string; sources: any[] }>('/chat', {
+      method: 'POST',
+      body: JSON.stringify({
+        message: params.message,
+        note_id: params.noteId,
+        chat_history: params.chatHistory,
+      }),
+    }),
+
+  getChatHistory: async (params?: { limit?: number; offset?: number }) =>
+    makeRequest<{ messages: any[] }>(
+      `/chat/history?${new URLSearchParams(params as any).toString()}`
+    ),
+
+  getSuggestedQuestions: async (params: { noteId?: string }) =>
+    makeRequest<{ questions: any[] }>(
+      `/chat/suggestions?${new URLSearchParams(params as any).toString()}`
+    ),
+
+  clearHistory: async () =>
+    makeRequest<{ success: boolean }>('/chat/history', {
+      method: 'DELETE',
     }),
 };
