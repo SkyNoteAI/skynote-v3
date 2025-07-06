@@ -8,6 +8,19 @@ BASE_URL="http://localhost:8787"
 echo "🔐 Testing Authentication System"
 echo "================================="
 
+# Check if jq is installed
+if ! command -v jq &> /dev/null; then
+    echo "❌ jq is required but not installed. Please install jq first."
+    exit 1
+fi
+
+# Check if server is running
+if ! curl -s "$BASE_URL/health" > /dev/null; then
+    echo "❌ Server is not running at $BASE_URL"
+    echo "Please start the server with: pnpm dev"
+    exit 1
+fi
+
 # Test health endpoint
 echo "1. Testing health endpoint..."
 response=$(curl -s "$BASE_URL/health")

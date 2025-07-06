@@ -58,7 +58,7 @@ const createOrGetUser = async (email: string, name: string, env: Env) => {
 
   if (!user) {
     // Create new user
-    const userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const userId = `user_${crypto.randomUUID()}`;
 
     await env.DB.prepare(
       'INSERT INTO users (id, email, name, created_at, updated_at) VALUES (?, ?, ?, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)'
@@ -249,10 +249,9 @@ authRouter.post('/refresh', async (c) => {
       });
     }
 
-    // Check if session exists and is valid
-    const session = activeSessions.get(refreshToken);
-    if (!session || session.expiresAt < Date.now()) {
-      activeSessions.delete(refreshToken);
+    // Check if session exists and is valid (with lazy cleanup)
+    const session = getValidSession(refreshToken);
+    if (!session) {
       return c.json(
         {
           success: false,
@@ -351,5 +350,16 @@ const cleanupExpiredSessions = () => {
   }
 };
 
-// Run cleanup every hour
-setInterval(cleanupExpiredSessions, 60 * 60 * 1000);
+// Lazy cleanup - check and clean during session operations
+const getValidSession = (refreshToken: string) => {
+  const session = activeSessions.get(refreshToken);
+  if (session && session.expiresAt < Date.now()) {
+    activeSessions.delete(refreshToken);
+    return null;
+  }
+  return session;
+};
+
+// Note: For production, implement scheduled cleanup using Cron Triggers
+// Add to wrangler.toml: [triggers] crons = ["0 * * * *"]
+// Then implement: export default { async scheduled(event, env, ctx) { ctx.waitUntil(cleanupExpiredSessions()); } }
